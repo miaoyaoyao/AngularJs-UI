@@ -3,7 +3,7 @@
 Since name for a UI is boring, so I decide name it to tm.I'm not good at English, wish you you catch what I said And help me improve my English.
 
 ## tm.pagination -- A very simple and useful pagination in AngularJs
-On line demo [tm.pagination](http://demo.miaoyueyue.com/js/AngularJs-UI/demo/pagination.html)
+On line demo [tm.pagination](http://demo.miaoyueyue.com/js/ng/AngularJs-UI/demo/pagination.html)
 
     // in the view
     <tm-pagination conf="paginationConf"></tm-pagination>
