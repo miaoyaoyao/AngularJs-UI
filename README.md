@@ -5,6 +5,14 @@ Since name for a UI is boring, so I decide name it to tm.I'm not good at English
 ## tm.pagination -- A very simple and useful pagination in AngularJs
 On line demo [tm.pagination](http://demo.miaoyueyue.com/js/ng/AngularJs-UI/demo/pagination.html)
 
+default:
+
+<img src="http://www.miaoyueyue.com/wp-content/uploads/2014/08/9a8495c8f641da099fef6175acefb5d9.png" />
+
+with some css and template change you can turn it to this
+
+<img src="http://www.miaoyueyue.com/wp-content/uploads/2014/08/f12bb2987330a85ebbe5e3420fe9c773.png"/>
+
     // in the view
     <tm-pagination conf="paginationConf"></tm-pagination>
 
