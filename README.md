@@ -23,7 +23,6 @@ with some css and template change you can turn it to this
         itemsPerPage: 15,
         pagesLength: 15,
         perPageOptions: [10, 20, 30, 40, 50],
-        rememberPerPage: 'perPageItems',
         onChange: function(){
 
         }
@@ -37,7 +36,16 @@ conf is a object, it has attributes like below:
 *   onChange: when the pagination is change, it will excute the function
 *   pagesLength: number for pagination size, default 9
 *   perPageOptions: defind select how many items in a page, default [10, 15, 20, 30, 50]
-*   rememberPerPage: use to remember how many items in a page select by user.
+
+if you want to use with ajax,you may follow like this:
+
+    $scope.paginationConf = {
+        onChange: function() {
+            $http.get('xxx', function(data) {
+                $scope.paginationConf.totalItems = data.totalItems;
+            })
+        }
+    };
 
 
 

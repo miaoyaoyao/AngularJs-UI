@@ -16,7 +16,7 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
             '</ul>' +
             '<div class="page-total" ng-show="conf.totalItems > 0">' +
             '第<input type="text" ng-model="jumpPageNum"  ng-keyup="jumpToPage($event)"/>页 ' +
-            '每页<select ng-model="conf.itemsPerPage" ng-options="option for option in conf.perPageOptions " ng-change="changeItemsPerPage()"></select>' +
+            '每页<select ng-model="conf.itemsPerPage" ng-options="option for option in conf.perPageOptions "></select>' +
             '/共<strong>{{ conf.totalItems }}</strong>条' +
             '</div>' +
             '<div class="no-items" ng-show="conf.totalItems <= 0">暂无数据</div>' +
@@ -28,7 +28,7 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
         link: function(scope, element, attrs){
 
             // 变更当前页
-            scope.changeCurrentPage = function(item){
+            scope.changeCurrentPage = function(item) {
                 if(item == '...'){
                     return;
                 }else{
@@ -49,25 +49,20 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
             }
 
             // pageList数组
-            function getPagination(){
+            function getPagination(newValue, oldValue) {
+                
+
                 // conf.currentPage
                 scope.conf.currentPage = parseInt(scope.conf.currentPage) ? parseInt(scope.conf.currentPage) : 1;
+                
+
+
                 // conf.totalItems
-                scope.conf.totalItems = parseInt(scope.conf.totalItems);
+                scope.conf.totalItems = parseInt(scope.conf.totalItems) ? parseInt(scope.conf.totalItems) : 0;
 
                 // conf.itemsPerPage (default:15)
-                // 先判断一下本地存储中有没有这个值
-                if(scope.conf.rememberPerPage){
-                    if(!parseInt(localStorage[scope.conf.rememberPerPage])){
-                        localStorage[scope.conf.rememberPerPage] = parseInt(scope.conf.itemsPerPage) ? parseInt(scope.conf.itemsPerPage) : 15;
-                    }
-
-                    scope.conf.itemsPerPage = parseInt(localStorage[scope.conf.rememberPerPage]);
-
-
-                }else{
-                    scope.conf.itemsPerPage = parseInt(scope.conf.itemsPerPage) ? parseInt(scope.conf.itemsPerPage) : 15;
-                }
+                scope.conf.itemsPerPage = parseInt(scope.conf.itemsPerPage) ? parseInt(scope.conf.itemsPerPage) : 15;
+                
 
                 // numberOfPages
                 scope.conf.numberOfPages = Math.ceil(scope.conf.totalItems/scope.conf.itemsPerPage);
@@ -77,7 +72,8 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
                     scope.conf.currentPage = 1;
                 }
 
-                if(scope.conf.currentPage > scope.conf.numberOfPages){
+                // 如果分页总数>0，并且当前页大于分页总数
+                if(scope.conf.numberOfPages > 0 && scope.conf.currentPage > scope.conf.numberOfPages){
                     scope.conf.currentPage = scope.conf.numberOfPages;
                 }
 
@@ -144,7 +140,13 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
                 }
 
                 if(scope.conf.onChange){
-                    scope.conf.onChange();
+                    
+
+                    // 防止初始化两次请求问题
+                    if(!(oldValue != newValue && oldValue[0] == 0)) {
+                        scope.conf.onChange();
+                    }
+                    
                 }
                 scope.$parent.conf = scope.conf;
             }
@@ -170,31 +172,23 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
                 }
             };
 
-            // 修改每页显示的条数
-            scope.changeItemsPerPage = function(){
-                // 清除本地存储的值方便重新设置
-                if(scope.conf.rememberPerPage){
-                    localStorage.removeItem(scope.conf.rememberPerPage);
-                }
-            };
+            
 
-            scope.$watch(function(){
-                var newValue = scope.conf.currentPage + ' ' + scope.conf.totalItems + ' ';
-                // 如果直接watch perPage变化的时候，因为记住功能的原因，所以一开始可能调用两次。
-                //所以用了如下方式处理
-                if(scope.conf.rememberPerPage){
-                    // 由于记住的时候需要特别处理一下，不然可能造成反复请求
-                    // 之所以不监控localStorage[scope.conf.rememberPerPage]是因为在删除的时候会undefind
-                    // 然后又一次请求
-                    if(localStorage[scope.conf.rememberPerPage]){
-                        newValue += localStorage[scope.conf.rememberPerPage];
-                    }else{
-                        newValue += scope.conf.itemsPerPage;
-                    }
-                }else{
-                    newValue += scope.conf.itemsPerPage;
+            scope.$watch(function() {
+                
+
+                if(!scope.conf.totalItems) {
+                    scope.conf.totalItems = 0;
                 }
+
+
+                var newValue = scope.conf.totalItems + ' ' +  scope.conf.currentPage + ' ' + scope.conf.itemsPerPage;
+                
+                
                 return newValue;
+
+                
+
 
             }, getPagination);
 
