@@ -1,6 +1,6 @@
-# AngularJs UI -- Want to be the best UI
+# AngularJs Pagination -- Want to be the best Pagination 希望成为最好用分页，没有之一。
 
-Since name for a UI is boring, so I decide name it to tm.I'm not good at English, wish you you catch what I said And help me improve my English.
+Since name for a pagination is boring, so I decide name it to tm.I'm not good at English, wish you you catch what I said And help me improve my English.
 
 ## tm.pagination -- A very simple and useful pagination in AngularJs
 Online demo [tm.pagination](http://demo.miaoyueyue.com/js/ng/AngularJs-UI/demo/pagination.html)
@@ -46,10 +46,4 @@ if you want to use with ajax,you may follow like this:
             })
         }
     };
-
-
-
-
-
-
-
+    
