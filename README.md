@@ -1,4 +1,4 @@
-# AngularJs Pagination -- Want to be the best Pagination 希望成为最好用分页，没有之一。
+# AngularJs Pagination -- Want to be the best Pagination 
 
 Since name for a pagination is boring, so I decide name it to tm.I'm not good at English, wish you you catch what I said And help me improve my English.
 
