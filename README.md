@@ -35,7 +35,7 @@ conf is a object, it has attributes like below:
 *   itemsPerPage:  number of items per page, default 15
 *   onChange: when the pagination is change, it will excute the function
 *   pagesLength: number for pagination size, default 9
-*   perPageOptions: defind select how many items in a page, default [10, 15, 20, 30, 50]
+*   perPageOptions: define select how many items in a page, default [10, 15, 20, 30, 50]
 
 if you want to use with ajax,you may follow like this:
 
