@@ -5,6 +5,12 @@ Since name for a pagination is boring, so I decide name it to tm.I'm not good at
 ## tm.pagination -- A very simple and useful pagination in AngularJs
 Online demo [tm.pagination](http://demo.miaoyueyue.com/js/ng/AngularJs-UI/demo/pagination.html)
 
+**relate blog articles:**
+
+- https://www.miaoyueyue.com/archives/791.html
+- https://www.miaoyueyue.com/archives/813.html
+- https://www.miaoyueyue.com/archives/833.html
+
 default:
 
 <img src="http://www.miaoyueyue.com/wp-content/uploads/2014/08/9a8495c8f641da099fef6175acefb5d9.png" />
