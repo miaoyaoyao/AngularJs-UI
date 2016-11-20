@@ -170,12 +170,20 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
                 if(conf.currentPage > 1){
                     conf.currentPage -= 1;
                 }
+                getPagination();
+                if(conf.onChange) {
+                    conf.onChange();
+                }
             };
 
             // nextPage
             scope.nextPage = function() {
                 if(conf.currentPage < conf.numberOfPages){
                     conf.currentPage += 1;
+                }
+                getPagination();
+                if(conf.onChange) {
+                    conf.onChange();
                 }
             };
 
