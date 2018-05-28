@@ -58,7 +58,7 @@ angular.module('tm.pagination', []).directive('tmPagination',[function(){
 
             // 分页选项可调整每页显示的条数
             if(!conf.perPageOptions){
-                conf.perPageOptions = defaultPagesLength;
+                conf.perPageOptions = defaultPerPageOptions;
             }
 
             // pageList数组
