@@ -5,22 +5,24 @@
 angular.module('tm.pagination', []).directive('tmPagination',[function(){
     return {
         restrict: 'EA',
-        template: '<div class="page-list">' +
-            '<ul class="pagination" ng-show="conf.totalItems > 0">' +
-            '<li ng-class="{disabled: conf.currentPage == 1}" ng-click="prevPage()"><span>&laquo;</span></li>' +
-            '<li ng-repeat="item in pageList track by $index" ng-class="{active: item == conf.currentPage, separate: item == \'...\'}" ' +
-            'ng-click="changeCurrentPage(item)">' +
-            '<span>{{ item }}</span>' +
-            '</li>' +
-            '<li ng-class="{disabled: conf.currentPage == conf.numberOfPages}" ng-click="nextPage()"><span>&raquo;</span></li>' +
-            '</ul>' +
-            '<div class="page-total" ng-show="conf.totalItems > 0">' +
-            '每页<select ng-model="conf.itemsPerPage" ng-options="option for option in conf.perPageOptions " ng-change="changeItemsPerPage()"></select>' +
-            '/共<strong>{{ conf.totalItems }}</strong>条 ' +
-            '跳转至<input type="text" ng-model="jumpPageNum" ng-keyup="jumpPageKeyUp($event)"/>' +
-            '</div>' +
-            '<div class="no-items" ng-show="conf.totalItems <= 0">暂无数据</div>' +
-            '</div>',
+			template: '<div class="page-list">' +
+				'<ul data-am-widget="pagination" class="am-pagination am-pagination-default" ng-show="conf.totalItems > 0">' +
+				'<li ng-class="{disabled: conf.currentPage == 1}" ng-click="prevPage()"><span>上一页</span></li>' +
+				'<li ng-repeat="item in pageList track by $index" ng-class="{\'am-active\': item == conf.currentPage, separate: item == \'...\'}" ' +
+				'ng-click="changeCurrentPage(item)">' +
+				'<span>{{ item }}</span>' +
+				'</li>' +
+				'<li ng-class="{disabled: conf.currentPage == conf.numberOfPages}" ng-click="nextPage()"><span>下一页</span></li>' +
+				'</ul>' +
+				/**
+				'<div class="page-total" ng-show="conf.totalItems > 0">' +
+				'每页<select ng-model="conf.itemsPerPage" ng-options="option for option in conf.perPageOptions " ng-change="changeItemsPerPage()"></select>' +
+				'/共<strong>{{ conf.totalItems }}</strong>条 ' +
+				'跳转至<input type="text" ng-model="jumpPageNum" ng-keyup="jumpPageKeyUp($event)"/>' +
+				'</div>' +
+				**/
+				'<div class="no-items" ng-show="conf.totalItems <= 0">暂无数据</div>' +
+				'</div>',
         replace: true,
         scope: {
             conf: '='
